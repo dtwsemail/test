@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Bumblebee:war">
+    <output-path>$PROJECT_DIR$/../../Bumblebee/target</output-path>
+    <root id="archive" name="Bumblebee.war">
+      <element id="artifact" artifact-name="Bumblebee:war exploded" />
+    </root>
+  </artifact>
+</component>

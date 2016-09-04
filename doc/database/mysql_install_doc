@@ -1,0 +1,70 @@
+1, downloan mysql install package
+
+        wget http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.9-linux-glibc2.5-x86_64.tar.gz
+
+2, decompress tar file
+
+        tar -zvfx mysql-5.7.9-linux-glibc2.5-x86_64.tar.gz
+
+
+ 3, create soft link
+
+        ln -s mysql-path mysql
+
+ 4, create mysql user
+
+        groupadd mysql
+        useradd -g mysql -s /sbin/nologin -d /dev/null mysql
+        mysql[root@node1 local]# id mysql uid=501(mysql) gid=500(mysql) groups=500(mysql)
+
+
+
+ 5 change install document defalut user and group
+
+     [root@node1 local]# chown -R mysql:mysql mysql
+     [root@node1 local]# chown -R mysql:mysql mysql/
+
+
+6 create mysql dir
+
+    [root@node1 /]# mkdir data
+    [root@node1 /]# ls bin   data  etc   lib    lost+found  misc  net  proc  sbin     srv  tmp  varboot  dev   home  lib64  media       mnt   opt  root  selinux  sys  usr
+    [root@node1 /]# cd data
+    [root@node1 data]# mkdir mysql
+    [root@node1 data]# cd mysql
+    [root@node1 mysql]# mkdir -p mysql3306/{logs,tmp,data}
+    [root@node1 mysql]# ls mysql3306
+    [root@node1 mysql]# cd mysql3306
+    [root@node1 mysql3306]# lsdata  logs  tmp
+    [root@node1 mysql3306]#
+
+7  edit intall conf file
+
+     [root@node2 logs]# cd /usr/local/mysql/support-files
+     [root@node2 support-files]# ls magic  my-default.cnf  mysqld_multi.server  mysql-log-rotate  mysql.server
+     [root@node2 support-files]# ls -l 总用量 28-rw-r--r--. 1 mysql mysql   773 10月 12 14:21 magic-rw-r--r--. 1 mysql mysql  1126 10月 12 15:15 my-default.cnf-rwxr-xr-x. 1 mysql mysql  1061 10月 12 15:15 mysqld_multi.server-rwxr-xr-x. 1 mysql mysql   894 10月 12 15:15 mysql-log-rotate-rwxr-xr-x. 1 mysql mysql 10975 10月 12 15:15 mysql.server
+
+8  install mysql
+    bin/mysqld --defaults-file=/data/mysql/mysql3307/my.cnf --initialize
+
+9 check install log if occurs error
+
+10  support auto start when system start
+
+    cp support-files/mysql.server /etc/init.d/mysql
+
+12 start mysql-server
+
+    ./mysqld  --defaults-file=/home/mysql/data/my-default.cnf  --user=mysql
+    bin/mysqld_safe --user=mysql &
+
+    // mysql use  /etc/my.cnf as default properties file;
+
+
+13 update empired password
+
+   ./mysqladmin -u root -p password
+
+
+14 modify envriment variable :path
+

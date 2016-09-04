@@ -5,5 +5,5 @@ package stock.history.service;
  */
 public interface DataCrawlerService {
 
-
+    void addOrder();
 }

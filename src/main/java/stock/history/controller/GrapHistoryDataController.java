@@ -1,8 +1,9 @@
 package stock.history.controller;
 
-/**
- * Created by SONY on 2016/8/28.
- */
+
+import org.springframework.stereotype.Controller;
+
+@Controller
 public class GrapHistoryDataController {
 
 
