@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="stock.history.dal.mapper.StockInfoMapper">
+    <resultMap id="BaseResultMap" type="stock.history.dal.model.StockInfo">
+        <id column="stock_id" property="stockId" jdbcType="VARCHAR"/>
+        <result column="stock_name" property="stockName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        stock_id, stock_name
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="stock.history.dal.model.StockInfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from stock_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_info
+        where stock_id = #{stockId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from stock_info
+        where stock_id = #{stockId,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="stock.history.dal.model.StockInfoExample">
+        delete from stock_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="stock.history.dal.model.StockInfo">
+        insert into stock_info (stock_id, stock_name)
+        values (#{stockId,jdbcType=VARCHAR}, #{stockName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="stock.history.dal.model.StockInfo">
+        insert into stock_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stockId != null">
+                stock_id,
+            </if>
+            <if test="stockName != null">
+                stock_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stockId != null">
+                #{stockId,jdbcType=VARCHAR},
+            </if>
+            <if test="stockName != null">
+                #{stockName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="stock.history.dal.model.StockInfoExample" resultType="java.lang.Integer">
+        select count(*) from stock_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update stock_info
+        <set>
+            <if test="record.stockId != null">
+                stock_id = #{record.stockId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.stockName != null">
+                stock_name = #{record.stockName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update stock_info
+        set stock_id = #{record.stockId,jdbcType=VARCHAR},
+        stock_name = #{record.stockName,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="stock.history.dal.model.StockInfo">
+        update stock_info
+        <set>
+            <if test="stockName != null">
+                stock_name = #{stockName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where stock_id = #{stockId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="stock.history.dal.model.StockInfo">
+        update stock_info
+        set stock_name = #{stockName,jdbcType=VARCHAR}
+        where stock_id = #{stockId,jdbcType=VARCHAR}
+    </update>
+</mapper>
