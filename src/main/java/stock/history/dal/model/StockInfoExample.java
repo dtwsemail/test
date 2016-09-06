@@ -174,6 +174,76 @@ public class StockInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andStockCodeIsNull() {
+            addCriterion("stock_code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeIsNotNull() {
+            addCriterion("stock_code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeEqualTo(String value) {
+            addCriterion("stock_code =", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeNotEqualTo(String value) {
+            addCriterion("stock_code <>", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeGreaterThan(String value) {
+            addCriterion("stock_code >", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("stock_code >=", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeLessThan(String value) {
+            addCriterion("stock_code <", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeLessThanOrEqualTo(String value) {
+            addCriterion("stock_code <=", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeLike(String value) {
+            addCriterion("stock_code like", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeNotLike(String value) {
+            addCriterion("stock_code not like", value, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeIn(List<String> values) {
+            addCriterion("stock_code in", values, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeNotIn(List<String> values) {
+            addCriterion("stock_code not in", values, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeBetween(String value1, String value2) {
+            addCriterion("stock_code between", value1, value2, "stockCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockCodeNotBetween(String value1, String value2) {
+            addCriterion("stock_code not between", value1, value2, "stockCode");
+            return (Criteria) this;
+        }
+
         public Criteria andStockNameIsNull() {
             addCriterion("stock_name is null");
             return (Criteria) this;
@@ -241,6 +311,216 @@ public class StockInfoExample {
 
         public Criteria andStockNameNotBetween(String value1, String value2) {
             addCriterion("stock_name not between", value1, value2, "stockName");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationIsNull() {
+            addCriterion("location is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationIsNotNull() {
+            addCriterion("location is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationEqualTo(String value) {
+            addCriterion("location =", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationNotEqualTo(String value) {
+            addCriterion("location <>", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationGreaterThan(String value) {
+            addCriterion("location >", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationGreaterThanOrEqualTo(String value) {
+            addCriterion("location >=", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationLessThan(String value) {
+            addCriterion("location <", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationLessThanOrEqualTo(String value) {
+            addCriterion("location <=", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationLike(String value) {
+            addCriterion("location like", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationNotLike(String value) {
+            addCriterion("location not like", value, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationIn(List<String> values) {
+            addCriterion("location in", values, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationNotIn(List<String> values) {
+            addCriterion("location not in", values, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationBetween(String value1, String value2) {
+            addCriterion("location between", value1, value2, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andLocationNotBetween(String value1, String value2) {
+            addCriterion("location not between", value1, value2, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryIsNull() {
+            addCriterion("industry is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryIsNotNull() {
+            addCriterion("industry is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryEqualTo(String value) {
+            addCriterion("industry =", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotEqualTo(String value) {
+            addCriterion("industry <>", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryGreaterThan(String value) {
+            addCriterion("industry >", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryGreaterThanOrEqualTo(String value) {
+            addCriterion("industry >=", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryLessThan(String value) {
+            addCriterion("industry <", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryLessThanOrEqualTo(String value) {
+            addCriterion("industry <=", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryLike(String value) {
+            addCriterion("industry like", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotLike(String value) {
+            addCriterion("industry not like", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryIn(List<String> values) {
+            addCriterion("industry in", values, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotIn(List<String> values) {
+            addCriterion("industry not in", values, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryBetween(String value1, String value2) {
+            addCriterion("industry between", value1, value2, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotBetween(String value1, String value2) {
+            addCriterion("industry not between", value1, value2, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeIsNull() {
+            addCriterion("stock_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeIsNotNull() {
+            addCriterion("stock_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeEqualTo(String value) {
+            addCriterion("stock_type =", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeNotEqualTo(String value) {
+            addCriterion("stock_type <>", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeGreaterThan(String value) {
+            addCriterion("stock_type >", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("stock_type >=", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeLessThan(String value) {
+            addCriterion("stock_type <", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeLessThanOrEqualTo(String value) {
+            addCriterion("stock_type <=", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeLike(String value) {
+            addCriterion("stock_type like", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeNotLike(String value) {
+            addCriterion("stock_type not like", value, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeIn(List<String> values) {
+            addCriterion("stock_type in", values, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeNotIn(List<String> values) {
+            addCriterion("stock_type not in", values, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeBetween(String value1, String value2) {
+            addCriterion("stock_type between", value1, value2, "stockType");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockTypeNotBetween(String value1, String value2) {
+            addCriterion("stock_type not between", value1, value2, "stockType");
             return (Criteria) this;
         }
     }

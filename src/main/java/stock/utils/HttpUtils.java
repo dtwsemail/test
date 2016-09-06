@@ -1,12 +1,12 @@
 package stock.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import stock.common.exception.HttpException;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -82,28 +82,49 @@ public class HttpUtils {
 
     public static final String sendGet(String baseUrl, Map<String, String> param) {
         String url = baseUrl + getUrlParamStr(param);
-        return sendGet(url);
+        return doGet(url);
     }
 
-    public static String sendGet(String url) {
+//    public static final String doGet(String url) {
+//        BufferedReader in = null;
+//
+//        String content = null;
+//        try {
+//            HttpClient client = new DefaultHttpClient();
+//            HttpGet request = new HttpGet();
+//            request.setURI(new URI(url));
+//            HttpResponse response = client.execute(request);
+//
+//            in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+//            StringBuffer sb = new StringBuffer();
+//            String line;
+//            while ((line = in.readLine()) != null) {
+//                sb.append(line);
+//            }
+//            in.close();
+//            content = sb.toString();
+//        } finally {
+//            if (in != null) {
+//                try {
+//                    in.close();// 最后要关闭BufferedReader
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            return content;
+//        }
+//    }
+
+    public static String doGet(String url) {
         String result = "";
         BufferedReader in = null;
         try {
             URL realUrl = new URL(url);
-            // 打开和URL之间的连接
             URLConnection connection = realUrl.openConnection();
-            // 设置通用的请求属性
             connection.setRequestProperty("accept", "*/*");
             connection.setRequestProperty("connection", "Keep-Alive");
             connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            // 建立实际的连接
             connection.connect();
-            // 获取所有响应头字段
-            Map<String, List<String>> map = connection.getHeaderFields();
-            // 遍历所有的响应头字段
-            for (String key : map.keySet()) {
-                System.out.println(key + "--->" + map.get(key));
-            }
             // 定义 BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(
                     connection.getInputStream()));
@@ -113,9 +134,8 @@ public class HttpUtils {
             }
         } catch (Exception e) {
             System.out.println("发送GET请求出现异常！" + e);
-            e.printStackTrace();
+            throw new HttpException("404", e);
         }
-        // 使用finally块来关闭输入流
         finally {
             try {
                 if (in != null) {

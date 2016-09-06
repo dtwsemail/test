@@ -11,4 +11,8 @@ public class AssertUtil {
         Preconditions.checkState(condition, errorMsg);
     }
 
+    public static void assertNotNull(Object obj, String errorMsg) {
+        Preconditions.checkState(obj != null, errorMsg);
+    }
+
 }

@@ -3,7 +3,11 @@
 <mapper namespace="stock.history.dal.mapper.StockInfoMapper">
     <resultMap id="BaseResultMap" type="stock.history.dal.model.StockInfo">
         <id column="stock_id" property="stockId" jdbcType="VARCHAR"/>
+        <result column="stock_code" property="stockCode" jdbcType="VARCHAR"/>
         <result column="stock_name" property="stockName" jdbcType="VARCHAR"/>
+        <result column="location" property="location" jdbcType="VARCHAR"/>
+        <result column="industry" property="industry" jdbcType="VARCHAR"/>
+        <result column="stock_type" property="stockType" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -66,7 +70,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        stock_id, stock_name
+        stock_id, stock_code, stock_name, location, industry, stock_type
     </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="stock.history.dal.model.StockInfoExample">
         select
@@ -99,8 +103,12 @@
         </if>
     </delete>
     <insert id="insert" parameterType="stock.history.dal.model.StockInfo">
-        insert into stock_info (stock_id, stock_name)
-        values (#{stockId,jdbcType=VARCHAR}, #{stockName,jdbcType=VARCHAR})
+        insert into stock_info (stock_id, stock_code, stock_name,
+        location, industry, stock_type
+        )
+        values (#{stockId,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{stockName,jdbcType=VARCHAR},
+        #{location,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{stockType,jdbcType=VARCHAR}
+        )
     </insert>
     <insert id="insertSelective" parameterType="stock.history.dal.model.StockInfo">
         insert into stock_info
@@ -108,16 +116,40 @@
             <if test="stockId != null">
                 stock_id,
             </if>
+            <if test="stockCode != null">
+                stock_code,
+            </if>
             <if test="stockName != null">
                 stock_name,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="industry != null">
+                industry,
+            </if>
+            <if test="stockType != null">
+                stock_type,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="stockId != null">
                 #{stockId,jdbcType=VARCHAR},
             </if>
+            <if test="stockCode != null">
+                #{stockCode,jdbcType=VARCHAR},
+            </if>
             <if test="stockName != null">
                 #{stockName,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                #{industry,jdbcType=VARCHAR},
+            </if>
+            <if test="stockType != null">
+                #{stockType,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -133,8 +165,20 @@
             <if test="record.stockId != null">
                 stock_id = #{record.stockId,jdbcType=VARCHAR},
             </if>
+            <if test="record.stockCode != null">
+                stock_code = #{record.stockCode,jdbcType=VARCHAR},
+            </if>
             <if test="record.stockName != null">
                 stock_name = #{record.stockName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.location != null">
+                location = #{record.location,jdbcType=VARCHAR},
+            </if>
+            <if test="record.industry != null">
+                industry = #{record.industry,jdbcType=VARCHAR},
+            </if>
+            <if test="record.stockType != null">
+                stock_type = #{record.stockType,jdbcType=VARCHAR},
             </if>
         </set>
         <if test="_parameter != null">
@@ -144,7 +188,11 @@
     <update id="updateByExample" parameterType="map">
         update stock_info
         set stock_id = #{record.stockId,jdbcType=VARCHAR},
-        stock_name = #{record.stockName,jdbcType=VARCHAR}
+        stock_code = #{record.stockCode,jdbcType=VARCHAR},
+        stock_name = #{record.stockName,jdbcType=VARCHAR},
+        location = #{record.location,jdbcType=VARCHAR},
+        industry = #{record.industry,jdbcType=VARCHAR},
+        stock_type = #{record.stockType,jdbcType=VARCHAR}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -152,15 +200,31 @@
     <update id="updateByPrimaryKeySelective" parameterType="stock.history.dal.model.StockInfo">
         update stock_info
         <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode,jdbcType=VARCHAR},
+            </if>
             <if test="stockName != null">
                 stock_name = #{stockName,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                industry = #{industry,jdbcType=VARCHAR},
+            </if>
+            <if test="stockType != null">
+                stock_type = #{stockType,jdbcType=VARCHAR},
             </if>
         </set>
         where stock_id = #{stockId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="stock.history.dal.model.StockInfo">
         update stock_info
-        set stock_name = #{stockName,jdbcType=VARCHAR}
+        set stock_code = #{stockCode,jdbcType=VARCHAR},
+        stock_name = #{stockName,jdbcType=VARCHAR},
+        location = #{location,jdbcType=VARCHAR},
+        industry = #{industry,jdbcType=VARCHAR},
+        stock_type = #{stockType,jdbcType=VARCHAR}
         where stock_id = #{stockId,jdbcType=VARCHAR}
     </update>
 </mapper>

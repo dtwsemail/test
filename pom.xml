@@ -5,7 +5,6 @@
     <artifactId>stock.io</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>stock.io Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -154,7 +153,11 @@
             <version>1.0.25</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>edu.uci.ics</groupId>
+            <artifactId>crawler4j</artifactId>
+            <version>4.2</version>
+        </dependency>
 
 
         <dependency>

@@ -44,8 +44,9 @@
         </javaClientGenerator>
 
         <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
-        <table tableName="order_info" domainObjectName="OrderInfo"></table>
-        <!--<table tableName="stock_info" domainObjectName="StockInfo"/>-->
+        <!--<table tableName="order_info" domainObjectName="OrderInfo"></table>-->
+        <table tableName="stock_info" domainObjectName="StockInfo"/>
+        <table tableName="crawler_log" domainObjectName="CrawlerLog"/>
     </context>
 
 </generatorConfiguration> 

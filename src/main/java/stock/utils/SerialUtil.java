@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Created by lemon on 9/4/16.
  */
-public class SerialUtill {
+public class SerialUtil {
 
 
     public static String generateSerialNo() {

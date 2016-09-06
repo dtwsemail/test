@@ -5,21 +5,21 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <display-name>million</display-name>
+    <display-code>million</display-code>
 
     <!-- WebAppRootKey -->
     <context-param>
-        <param-name>webAppRootKey</param-name>
+        <param-code>webAppRootKey</param-code>
         <param-value>million</param-value>
     </context-param>
 
     <!-- Log4J Start -->
     <context-param>
-        <param-name>log4jConfigLocation</param-name>
+        <param-code>log4jConfigLocation</param-code>
         <param-value>classpath:log4j.properties</param-value>
     </context-param>
     <context-param>
-        <param-name>log4jRefreshInterval</param-name>
+        <param-code>log4jRefreshInterval</param-code>
         <param-value>6000</param-value>
     </context-param>
     <listener>
@@ -29,26 +29,26 @@
 
     <!-- Spring 编码过滤器 start -->
     <filter>
-        <filter-name>characterEncoding</filter-name>
+        <filter-code>characterEncoding</filter-code>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
-            <param-name>encoding</param-name>
+            <param-code>encoding</param-code>
             <param-value>UTF-8</param-value>
         </init-param>
         <init-param>
-            <param-name>forceEncoding</param-name>
+            <param-code>forceEncoding</param-code>
             <param-value>true</param-value>
         </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>characterEncoding</filter-name>
+        <filter-code>characterEncoding</filter-code>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- Spring 编码过滤器 End -->
 
     <!-- Spring Application Context Listener Start -->
     <context-param>
-        <param-name>contextConfigLocation</param-name>
+        <param-code>contextConfigLocation</param-code>
         <param-value>classpath*:config/spring/springContext.xml</param-value>
     </context-param>
     <listener>
@@ -59,17 +59,17 @@
 
     <!-- Spring MVC Config Start -->
     <servlet>
-        <servlet-name>SpringMVC</servlet-name>
+        <servlet-code>SpringMVC</servlet-code>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
         <init-param>
-            <param-name>contextConfigLocation</param-name>
+            <param-code>contextConfigLocation</param-code>
             <param-value>classpath:config/spring/springMvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SpringMVC</servlet-name>
+        <servlet-code>SpringMVC</servlet-code>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 

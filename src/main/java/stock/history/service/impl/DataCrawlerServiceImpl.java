@@ -7,7 +7,7 @@ import stock.history.dal.model.OrderInfo;
 import stock.history.service.DataCrawlerService;
 import stock.utils.AssertUtil;
 import stock.utils.DateUtil;
-import stock.utils.SerialUtill;
+import stock.utils.SerialUtil;
 
 /**
  * Created by SONY on 2016/8/28.
@@ -23,7 +23,7 @@ public class DataCrawlerServiceImpl implements DataCrawlerService {
     public void addOrder() {
 
         OrderInfo order = new OrderInfo();
-        order.setOrderId(SerialUtill.generateSerialNo());
+        order.setOrderId(SerialUtil.generateSerialNo());
         order.setStockId("111");
         order.setTradeDate(DateUtil.getCurrentDate());
         int n = orderInfoDao.insertOrderInfo(order);
