@@ -1,19 +1,17 @@
-package stock.crawler.service.impl;
+package stock.crawler.controller;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import stock.crawler.service.StockDataCrawler;
 import stock.history.service.impl.BaseTest;
 
 /**
- * Created by lemon on 9/5/16.
+ * Created by lemon on 9/6/16.
  */
-public class StockDataCrawlerImplTest extends BaseTest {
-
+public class StockCodeCrawlerControllerTest extends BaseTest {
     @Autowired
-    private StockDataCrawler stockDataCrawler;
+    private StockCodeCrawlerController stockCodeCrawlerController;
 
     @Before
     public void setUp() throws Exception {
@@ -26,8 +24,8 @@ public class StockDataCrawlerImplTest extends BaseTest {
     }
 
     @Test
-    public void crawStockCodeData() throws Exception {
-
+    public void getStockCodeData() throws Exception {
+        stockCodeCrawlerController.getStockCodeData();
     }
 
 }

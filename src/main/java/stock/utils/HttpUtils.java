@@ -43,20 +43,22 @@ public class HttpUtils {
         System.out.println(getUrlParamStr(params));
 
         String url = "http://quotes.money.163.com/service/chddata.html?code=0601398&start=20061027&end=20160828&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER;TCAP;MCAP";
-        getFileFromUrl(url, "D:/test.cvs");
+//        getFileFromUrl(url, "D:/test.cvs");
     }
 
-    private static void getFileFromUrl(String url, String fileName) {
+    public static void getFileFromUrl(String url, File file) {
         FileOutputStream fos = null;
         BufferedInputStream in = null;
         try {
-            fos = new FileOutputStream(fileName);
+            fos = new FileOutputStream(file);
             URL realUrl = new URL(url);
+            System.out.println(url);
             URLConnection connection = realUrl.openConnection();
             connection.setRequestProperty("accept", "*/*");
             connection.setRequestProperty("connection", "Keep-Alive");
             connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             connection.connect();
+
             in = new BufferedInputStream(connection.getInputStream());
             byte[] cache = new byte[4096];
 
@@ -68,6 +70,7 @@ public class HttpUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new HttpException("404", e);
         } finally {
             try {
                 if (fos != null) fos.close();

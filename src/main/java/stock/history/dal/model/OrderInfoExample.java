@@ -453,6 +453,66 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andBottomPriceIsNull() {
+            addCriterion("bottom_price is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceIsNotNull() {
+            addCriterion("bottom_price is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceEqualTo(BigDecimal value) {
+            addCriterion("bottom_price =", value, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceNotEqualTo(BigDecimal value) {
+            addCriterion("bottom_price <>", value, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceGreaterThan(BigDecimal value) {
+            addCriterion("bottom_price >", value, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("bottom_price >=", value, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceLessThan(BigDecimal value) {
+            addCriterion("bottom_price <", value, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("bottom_price <=", value, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceIn(List<BigDecimal> values) {
+            addCriterion("bottom_price in", values, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceNotIn(List<BigDecimal> values) {
+            addCriterion("bottom_price not in", values, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("bottom_price between", value1, value2, "bottomPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andBottomPriceNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("bottom_price not between", value1, value2, "bottomPrice");
+            return (Criteria) this;
+        }
+
         public Criteria andBeginPriceIsNull() {
             addCriterion("begin_price is null");
             return (Criteria) this;
@@ -643,52 +703,52 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateEqualTo(Integer value) {
+        public Criteria andShakeRateEqualTo(BigDecimal value) {
             addCriterion("shake_rate =", value, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateNotEqualTo(Integer value) {
+        public Criteria andShakeRateNotEqualTo(BigDecimal value) {
             addCriterion("shake_rate <>", value, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateGreaterThan(Integer value) {
+        public Criteria andShakeRateGreaterThan(BigDecimal value) {
             addCriterion("shake_rate >", value, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateGreaterThanOrEqualTo(Integer value) {
+        public Criteria andShakeRateGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("shake_rate >=", value, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateLessThan(Integer value) {
+        public Criteria andShakeRateLessThan(BigDecimal value) {
             addCriterion("shake_rate <", value, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateLessThanOrEqualTo(Integer value) {
+        public Criteria andShakeRateLessThanOrEqualTo(BigDecimal value) {
             addCriterion("shake_rate <=", value, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateIn(List<Integer> values) {
+        public Criteria andShakeRateIn(List<BigDecimal> values) {
             addCriterion("shake_rate in", values, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateNotIn(List<Integer> values) {
+        public Criteria andShakeRateNotIn(List<BigDecimal> values) {
             addCriterion("shake_rate not in", values, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateBetween(Integer value1, Integer value2) {
+        public Criteria andShakeRateBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("shake_rate between", value1, value2, "shakeRate");
             return (Criteria) this;
         }
 
-        public Criteria andShakeRateNotBetween(Integer value1, Integer value2) {
+        public Criteria andShakeRateNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("shake_rate not between", value1, value2, "shakeRate");
             return (Criteria) this;
         }
@@ -763,52 +823,52 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteEqualTo(Long value) {
+        public Criteria andTradeQuoteEqualTo(BigDecimal value) {
             addCriterion("trade_quote =", value, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteNotEqualTo(Long value) {
+        public Criteria andTradeQuoteNotEqualTo(BigDecimal value) {
             addCriterion("trade_quote <>", value, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteGreaterThan(Long value) {
+        public Criteria andTradeQuoteGreaterThan(BigDecimal value) {
             addCriterion("trade_quote >", value, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteGreaterThanOrEqualTo(Long value) {
+        public Criteria andTradeQuoteGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("trade_quote >=", value, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteLessThan(Long value) {
+        public Criteria andTradeQuoteLessThan(BigDecimal value) {
             addCriterion("trade_quote <", value, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteLessThanOrEqualTo(Long value) {
+        public Criteria andTradeQuoteLessThanOrEqualTo(BigDecimal value) {
             addCriterion("trade_quote <=", value, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteIn(List<Long> values) {
+        public Criteria andTradeQuoteIn(List<BigDecimal> values) {
             addCriterion("trade_quote in", values, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteNotIn(List<Long> values) {
+        public Criteria andTradeQuoteNotIn(List<BigDecimal> values) {
             addCriterion("trade_quote not in", values, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteBetween(Long value1, Long value2) {
+        public Criteria andTradeQuoteBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("trade_quote between", value1, value2, "tradeQuote");
             return (Criteria) this;
         }
 
-        public Criteria andTradeQuoteNotBetween(Long value1, Long value2) {
+        public Criteria andTradeQuoteNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("trade_quote not between", value1, value2, "tradeQuote");
             return (Criteria) this;
         }
@@ -823,52 +883,52 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountEqualTo(Long value) {
+        public Criteria andTradeAmountEqualTo(BigDecimal value) {
             addCriterion("trade_amount =", value, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountNotEqualTo(Long value) {
+        public Criteria andTradeAmountNotEqualTo(BigDecimal value) {
             addCriterion("trade_amount <>", value, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountGreaterThan(Long value) {
+        public Criteria andTradeAmountGreaterThan(BigDecimal value) {
             addCriterion("trade_amount >", value, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountGreaterThanOrEqualTo(Long value) {
+        public Criteria andTradeAmountGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("trade_amount >=", value, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountLessThan(Long value) {
+        public Criteria andTradeAmountLessThan(BigDecimal value) {
             addCriterion("trade_amount <", value, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountLessThanOrEqualTo(Long value) {
+        public Criteria andTradeAmountLessThanOrEqualTo(BigDecimal value) {
             addCriterion("trade_amount <=", value, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountIn(List<Long> values) {
+        public Criteria andTradeAmountIn(List<BigDecimal> values) {
             addCriterion("trade_amount in", values, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountNotIn(List<Long> values) {
+        public Criteria andTradeAmountNotIn(List<BigDecimal> values) {
             addCriterion("trade_amount not in", values, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountBetween(Long value1, Long value2) {
+        public Criteria andTradeAmountBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("trade_amount between", value1, value2, "tradeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTradeAmountNotBetween(Long value1, Long value2) {
+        public Criteria andTradeAmountNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("trade_amount not between", value1, value2, "tradeAmount");
             return (Criteria) this;
         }
@@ -883,52 +943,52 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountEqualTo(Long value) {
+        public Criteria andTotalAmountEqualTo(BigDecimal value) {
             addCriterion("total_amount =", value, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountNotEqualTo(Long value) {
+        public Criteria andTotalAmountNotEqualTo(BigDecimal value) {
             addCriterion("total_amount <>", value, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountGreaterThan(Long value) {
+        public Criteria andTotalAmountGreaterThan(BigDecimal value) {
             addCriterion("total_amount >", value, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountGreaterThanOrEqualTo(Long value) {
+        public Criteria andTotalAmountGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("total_amount >=", value, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountLessThan(Long value) {
+        public Criteria andTotalAmountLessThan(BigDecimal value) {
             addCriterion("total_amount <", value, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountLessThanOrEqualTo(Long value) {
+        public Criteria andTotalAmountLessThanOrEqualTo(BigDecimal value) {
             addCriterion("total_amount <=", value, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountIn(List<Long> values) {
+        public Criteria andTotalAmountIn(List<BigDecimal> values) {
             addCriterion("total_amount in", values, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountNotIn(List<Long> values) {
+        public Criteria andTotalAmountNotIn(List<BigDecimal> values) {
             addCriterion("total_amount not in", values, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountBetween(Long value1, Long value2) {
+        public Criteria andTotalAmountBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("total_amount between", value1, value2, "totalAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTotalAmountNotBetween(Long value1, Long value2) {
+        public Criteria andTotalAmountNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("total_amount not between", value1, value2, "totalAmount");
             return (Criteria) this;
         }
@@ -943,53 +1003,113 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountEqualTo(Long value) {
+        public Criteria andUnfrozenAmountEqualTo(BigDecimal value) {
             addCriterion("unfrozen_amount =", value, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountNotEqualTo(Long value) {
+        public Criteria andUnfrozenAmountNotEqualTo(BigDecimal value) {
             addCriterion("unfrozen_amount <>", value, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountGreaterThan(Long value) {
+        public Criteria andUnfrozenAmountGreaterThan(BigDecimal value) {
             addCriterion("unfrozen_amount >", value, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountGreaterThanOrEqualTo(Long value) {
+        public Criteria andUnfrozenAmountGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("unfrozen_amount >=", value, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountLessThan(Long value) {
+        public Criteria andUnfrozenAmountLessThan(BigDecimal value) {
             addCriterion("unfrozen_amount <", value, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountLessThanOrEqualTo(Long value) {
+        public Criteria andUnfrozenAmountLessThanOrEqualTo(BigDecimal value) {
             addCriterion("unfrozen_amount <=", value, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountIn(List<Long> values) {
+        public Criteria andUnfrozenAmountIn(List<BigDecimal> values) {
             addCriterion("unfrozen_amount in", values, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountNotIn(List<Long> values) {
+        public Criteria andUnfrozenAmountNotIn(List<BigDecimal> values) {
             addCriterion("unfrozen_amount not in", values, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountBetween(Long value1, Long value2) {
+        public Criteria andUnfrozenAmountBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("unfrozen_amount between", value1, value2, "unfrozenAmount");
             return (Criteria) this;
         }
 
-        public Criteria andUnfrozenAmountNotBetween(Long value1, Long value2) {
+        public Criteria andUnfrozenAmountNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("unfrozen_amount not between", value1, value2, "unfrozenAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberIsNull() {
+            addCriterion("trade_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberIsNotNull() {
+            addCriterion("trade_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberEqualTo(BigDecimal value) {
+            addCriterion("trade_number =", value, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberNotEqualTo(BigDecimal value) {
+            addCriterion("trade_number <>", value, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberGreaterThan(BigDecimal value) {
+            addCriterion("trade_number >", value, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("trade_number >=", value, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberLessThan(BigDecimal value) {
+            addCriterion("trade_number <", value, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("trade_number <=", value, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberIn(List<BigDecimal> values) {
+            addCriterion("trade_number in", values, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberNotIn(List<BigDecimal> values) {
+            addCriterion("trade_number not in", values, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("trade_number between", value1, value2, "tradeNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNumberNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("trade_number not between", value1, value2, "tradeNumber");
             return (Criteria) this;
         }
     }

@@ -1,5 +1,7 @@
 package stock.history.dal.dao;
 
+import stock.common.constant.EnumCrawerLogStatus;
+import stock.common.constant.EnumCrawlerEvent;
 import stock.history.dal.model.CrawlerLog;
 
 /**
@@ -7,4 +9,6 @@ import stock.history.dal.model.CrawlerLog;
  */
 public interface CrawlerLogDao {
     int insertCrawlerLog(CrawlerLog log);
+
+    int insertCrawlerLog(String stockId, String url, String response, EnumCrawlerEvent crawlerEvent, EnumCrawerLogStatus status, String errorMsg);
 }

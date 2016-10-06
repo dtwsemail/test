@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import stock.history.dal.dao.StockInfoDao;
 import stock.history.dal.mapper.StockInfoMapper;
 import stock.history.dal.model.StockInfo;
+import stock.history.dal.model.StockInfoExample;
+
+import java.util.List;
 
 /**
  * Created by lemon on 9/5/16.
@@ -28,6 +31,12 @@ public class StockInfoDaoImpl implements StockInfoDao {
             return null;
         }
         return stockInfoMapper.selectByPrimaryKey(stockCode);
+    }
+
+    @Override
+    public List<StockInfo> selectAllStockInfo(){
+        StockInfoExample example = new StockInfoExample();
+        return  stockInfoMapper.selectByExample(example);
     }
 
 }

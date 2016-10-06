@@ -4,7 +4,7 @@ package stock.common.constant;
  * Created by lemon on 9/5/16.
  */
 public enum EnumCrawlerEvent {
-    STOCK_CODE("STO_C", "STOCK_CODE"), STOCK_HISTORY("STO_H", "STOCK_HISTORY"),;
+    STOCK_CODE("STO_C", "STOCK_CODE"), STOCK_HISTORY("STO_H", "STOCK_HISTORY"),STOCK_HISTORY_PARSE("STO_H_P", "STOCK_HISTORY_PARSE");
 
     private String code;
     private String description;

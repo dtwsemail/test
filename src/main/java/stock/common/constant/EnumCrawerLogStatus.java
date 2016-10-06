@@ -5,7 +5,7 @@ package stock.common.constant;
  */
 public enum EnumCrawerLogStatus {
 
-    SUCCESS("SUCCESS", "success"), TIMEOUT("TIMEOUT", "TIMEOUT"), F0F("404", "404"), Exception("Exception", "parse data Exception"), ERROR("ERROR", "UNKNOW");
+    SUCCESS("SUCCESS", "success"), TIMEOUT("TIMEOUT", "TIMEOUT"), F0F("404", "404"), EXCEPTION("EXCEPTION", "parse data Exception"), ERROR("ERROR", "UNKNOW");
 
     private String code;
     private String description;

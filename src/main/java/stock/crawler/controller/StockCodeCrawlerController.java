@@ -1,9 +1,9 @@
 package stock.crawler.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 import stock.common.constant.EnumStockLocation;
-import stock.crawler.service.StockDataCrawler;
+import stock.crawler.service.StockCodeCrawlerService;
 import stock.utils.StringUtil;
 
 import java.util.concurrent.ExecutorService;
@@ -13,14 +13,15 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by lemon on 9/5/16.
  */
-@Service
-public class StockDataCrawlerController {
+@Controller
+public class StockCodeCrawlerController {
 
     @Autowired
-    private StockDataCrawler stockDataCrawler;
+    private StockCodeCrawlerService stockCodeCrawlerService;
+
 
     //600xxx
-    //000xxx
+    //000sxxx
     //002xxx
     //300xxx
     public void getStockCodeData() {
@@ -32,10 +33,10 @@ public class StockDataCrawlerController {
                 @Override
                 public void run() {
                     try {
-                        EnumStockLocation location = EnumStockLocation.SHANG_HAI;
-                        String stockCode = "600" + StringUtil.prefixByLength(code, '0', 3);
+                        EnumStockLocation location = EnumStockLocation.SHEN_ZHEN;
+                        String stockCode = "300" + StringUtil.prefixByLength(code, '0', 3);
                         System.out.println("begin code : " + stockCode);
-                        stockDataCrawler.crawStockCodeData(stockCode, location);
+                        stockCodeCrawlerService.crawStockCodeData(stockCode, location);
                         System.out.println("end code : " + stockCode);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -43,11 +44,9 @@ public class StockDataCrawlerController {
                 }
             });
         }
-
-
         //wait
         try {
-            executorService.awaitTermination(99, TimeUnit.HOURS);
+            executorService.awaitTermination(1, TimeUnit.HOURS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

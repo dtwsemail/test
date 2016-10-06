@@ -14,23 +14,27 @@ public class OrderInfo {
 
     private BigDecimal topPrice;
 
+    private BigDecimal bottomPrice;
+
     private BigDecimal beginPrice;
 
     private BigDecimal previousPrice;
 
     private BigDecimal shakePrice;
 
-    private Integer shakeRate;
+    private BigDecimal shakeRate;
 
     private BigDecimal turnRate;
 
-    private Long tradeQuote;
+    private BigDecimal tradeQuote;
 
-    private Long tradeAmount;
+    private BigDecimal tradeAmount;
 
-    private Long totalAmount;
+    private BigDecimal totalAmount;
 
-    private Long unfrozenAmount;
+    private BigDecimal unfrozenAmount;
+
+    private BigDecimal tradeNumber;
 
     public String getOrderId() {
         return orderId;
@@ -72,6 +76,14 @@ public class OrderInfo {
         this.topPrice = topPrice;
     }
 
+    public BigDecimal getBottomPrice() {
+        return bottomPrice;
+    }
+
+    public void setBottomPrice(BigDecimal bottomPrice) {
+        this.bottomPrice = bottomPrice;
+    }
+
     public BigDecimal getBeginPrice() {
         return beginPrice;
     }
@@ -96,11 +108,11 @@ public class OrderInfo {
         this.shakePrice = shakePrice;
     }
 
-    public Integer getShakeRate() {
+    public BigDecimal getShakeRate() {
         return shakeRate;
     }
 
-    public void setShakeRate(Integer shakeRate) {
+    public void setShakeRate(BigDecimal shakeRate) {
         this.shakeRate = shakeRate;
     }
 
@@ -112,35 +124,43 @@ public class OrderInfo {
         this.turnRate = turnRate;
     }
 
-    public Long getTradeQuote() {
+    public BigDecimal getTradeQuote() {
         return tradeQuote;
     }
 
-    public void setTradeQuote(Long tradeQuote) {
+    public void setTradeQuote(BigDecimal tradeQuote) {
         this.tradeQuote = tradeQuote;
     }
 
-    public Long getTradeAmount() {
+    public BigDecimal getTradeAmount() {
         return tradeAmount;
     }
 
-    public void setTradeAmount(Long tradeAmount) {
+    public void setTradeAmount(BigDecimal tradeAmount) {
         this.tradeAmount = tradeAmount;
     }
 
-    public Long getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Long totalAmount) {
+    public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public Long getUnfrozenAmount() {
+    public BigDecimal getUnfrozenAmount() {
         return unfrozenAmount;
     }
 
-    public void setUnfrozenAmount(Long unfrozenAmount) {
+    public void setUnfrozenAmount(BigDecimal unfrozenAmount) {
         this.unfrozenAmount = unfrozenAmount;
+    }
+
+    public BigDecimal getTradeNumber() {
+        return tradeNumber;
+    }
+
+    public void setTradeNumber(BigDecimal tradeNumber) {
+        this.tradeNumber = tradeNumber;
     }
 }

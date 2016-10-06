@@ -3,31 +3,34 @@ package stock.crawler.service.impl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import stock.cache.impl.LocalCache;
+import stock.common.cache.LocalCache;
 import stock.common.constant.EnumCrawerLogStatus;
 import stock.common.constant.EnumCrawlerEvent;
 import stock.common.constant.EnumLocalCache;
 import stock.common.constant.EnumStockLocation;
-import stock.crawler.service.StockDataCrawler;
+import stock.crawler.service.StockCodeCrawlerService;
 import stock.history.dal.dao.CrawlerLogDao;
 import stock.history.dal.dao.StockInfoDao;
-import stock.history.dal.model.CrawlerLog;
 import stock.history.dal.model.StockInfo;
-import stock.utils.DateUtil;
 import stock.utils.HttpUtils;
-import stock.utils.SerialUtil;
 
 /**
  * Created by lemon on 9/5/16.
  */
 @Service
-public class StockDataCrawlerImpl implements StockDataCrawler {
+public class StockCodeCrawlerServiceImpl implements StockCodeCrawlerService {
 
     @Autowired
     private CrawlerLogDao crawlerLogDao;
     @Autowired
     private StockInfoDao stockInfoDao;
 
+    /**
+     * parse stock code from reponse
+     *
+     * @param resp
+     * @return
+     */
     public static String parseStockCodeData(String resp) {
         try {
             if (!StringUtils.isBlank(resp)) {
@@ -46,24 +49,6 @@ public class StockDataCrawlerImpl implements StockDataCrawler {
         return null;
     }
 
-
-    private void addCrawlerLog(String stockId, String url, String response, EnumCrawerLogStatus status, String errorMsg) {
-        CrawlerLog log = new CrawlerLog();
-        log.setId(SerialUtil.generateSerialNo());
-        log.setStockId(stockId);
-        log.setRequest(url);
-        if (StringUtils.isNotBlank(response)) {
-
-            log.setResponse(response.length() <= 500 ? response : response.substring(0, 500));
-        }
-        log.setCrawlerEvent(EnumCrawlerEvent.STOCK_CODE.getCode());
-        log.setCreateTime(DateUtil.getCurrentDate());
-        log.setStatus(status.getCode());
-        if (StringUtils.isNotBlank(errorMsg)) {
-            log.setErrorMsg(errorMsg.length() < 512 ? errorMsg : errorMsg.substring(0, 512));
-        }
-        crawlerLogDao.insertCrawlerLog(log);
-    }
 
 
     @Override
@@ -90,13 +75,13 @@ public class StockDataCrawlerImpl implements StockDataCrawler {
             stockInfoDao.insertStockInfo(stockInfo);
 
             if (StringUtils.isNotBlank(keys)) {
-                addCrawlerLog(stockCode, url, resp, EnumCrawerLogStatus.SUCCESS, null);
+                crawlerLogDao.insertCrawlerLog(stockCode, url, resp, EnumCrawlerEvent.STOCK_CODE, EnumCrawerLogStatus.SUCCESS, null);
             } else {
-                addCrawlerLog(stockCode, url, resp, EnumCrawerLogStatus.F0F, null);
+                crawlerLogDao.insertCrawlerLog(stockCode, url, resp, EnumCrawlerEvent.STOCK_CODE, EnumCrawerLogStatus.F0F, null);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            addCrawlerLog(stockCode, url, resp, EnumCrawerLogStatus.Exception, e.getMessage());
+            crawlerLogDao.insertCrawlerLog(stockCode, url, resp, EnumCrawlerEvent.STOCK_CODE, EnumCrawerLogStatus.EXCEPTION, e.getMessage());
         }
     }
 }

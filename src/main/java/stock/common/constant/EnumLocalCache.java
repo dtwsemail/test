@@ -5,7 +5,9 @@ package stock.common.constant;
  */
 public enum EnumLocalCache {
 
-    STOCK_CODE_CACHE("STOCK_CODE_CACHE", "STOCK_CODE_CACHE");
+    STOCK_CODE_CACHE("STOCK_CODE_CACHE", "STOCK_CODE_CACHE"),
+    STOCK_HISTORY_FILE_CACHE("STOCK_HISTORY_FILE_CACHE","STOCK_HISTORY_FILE_CACHE"),
+    STOCK_HISTORY_PARSE_CACHE("STOCK_HISTORY_PARSE_CACHE","STOCK_HISTORY_PARSE_CACHES");
 
     private String code;
     private String description;

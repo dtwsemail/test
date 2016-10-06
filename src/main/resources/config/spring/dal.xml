@@ -13,6 +13,10 @@
         <property name="initialSize" value="60"/><!-- 初始化连接数量 -->
         <property name="maxActive" value="100"/><!-- 最大连接数量 -->
         <property name="minIdle" value="10"/><!-- 最小空闲连接数量 -->
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="true" />
+        <property name="testOnReturn" value="true" />
     </bean>
 
 
