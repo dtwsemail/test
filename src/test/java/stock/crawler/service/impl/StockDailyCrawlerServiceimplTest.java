@@ -13,7 +13,7 @@ public class StockDailyCrawlerServiceimplTest extends BaseTest {
     @Autowired
     private StockDailyCrawlerService stockDailyCrawlerService;
 
-//    @Test
+    @Test
     public void crawStockDailyInfoByStockCode() throws Exception {
         stockDailyCrawlerService.crawStockDailyInfoByStockCode("000001");
     }
@@ -24,7 +24,7 @@ public class StockDailyCrawlerServiceimplTest extends BaseTest {
     }
 
 
-    @Test
+//    @Test
     public void parseStockDailyInfo() throws Exception {
         stockDailyCrawlerService.parseStockDailyData();
     }
