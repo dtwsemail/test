@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class FileUtil {
 
-    public final static List<String> readFile(File file) {
+    public final static List<String> readFile(File file, String charset) {
         if (!file.exists()) {
             return Collections.emptyList();
         }
@@ -21,7 +21,7 @@ public class FileUtil {
         List<String> result = Lists.newArrayList();
         try {
             String line = null;
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "utf-8"));
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
             while ((line = reader.readLine()) != null) {
                 result.add(line);
             }
@@ -38,8 +38,8 @@ public class FileUtil {
         return result;
     }
 
-    public final static List<String> readFile(File file, int startIndex) {
-        List<String> contentList = readFile(file);
+    public final static List<String> readFile(File file, String charset, int startIndex) {
+        List<String> contentList = readFile(file, charset);
         int size = contentList.size();
         return size > startIndex ? contentList.subList(startIndex, size) : Collections.emptyList();
     }

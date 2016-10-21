@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import stock.common.cache.LocalCache;
+import stock.common.constant.EnumCharset;
 import stock.common.constant.EnumCrawerLogStatus;
 import stock.common.constant.EnumCrawlerEvent;
 import stock.common.constant.EnumLocalCache;
@@ -23,6 +24,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by lemon on 10/5/16.
@@ -40,6 +43,13 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
     @Value("${data_path}")
     private String DATA_PATH;
 
+    public static void main(String[] args) {
+        String s = " 2016-09-21,'000001,��ָ֤��,   3025.8736,3032,-10.3147, -0.344,,104625697,1.16437377488e+11,,,None";
+        //         2016-09-30,'600228,昌九生化,14.86,    15.04,14.12,14.12,14.48,0.38,2.6243,8.6794,20945170,309060007.0,3586015200.0,3586015200.0,None
+
+        String[] elements = s.split(",");
+        System.out.println(elements.length);
+    }
 
     @Override
     public void crawStockDailyInfo() {
@@ -59,19 +69,11 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
         ThreadPool.aWait();
     }
 
-
-    public static void main(String[] args) {
-        String s = " 2016-09-21,'000001,��ָ֤��,   3025.8736,3032,-10.3147, -0.344,,104625697,1.16437377488e+11,,,None";
-          //         2016-09-30,'600228,昌九生化,14.86,    15.04,14.12,14.12,14.48,0.38,2.6243,8.6794,20945170,309060007.0,3586015200.0,3586015200.0,None
-
-        String[] elements = s.split(",");
-        System.out.println(elements.length);
-    }
-    private void addOrderInfo(String line){
+    private void addOrderInfo(String line) {
         if (StringUtils.isNotBlank(line)) {
             String[] elements = line.split(",");
 
-            if(elements.length<16){
+            if (elements.length < 16) {
                 throw new DataParseException(line);
             }
 
@@ -99,22 +101,20 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
     }
 
     @Override
-    public void parseStockDailyData(){
+    public void parseStockDailyData() {
         List<StockInfo> list = stockInfoDao.selectAllStockInfo();
-        List<ListenableFuture> totalFutureList = new ArrayList<ListenableFuture>();
+        ExecutorService service = Executors.newFixedThreadPool(100);
+
         for (StockInfo info : list) {
-            ListenableFuture future = ThreadPool.submit(new Callable<String>() {
-                @Override
-                public String call() throws Exception {
+            service.execute(() -> {
+                try {
                     parseStockDailyDataByStockCode(info.getStockId());
-                    return null;
+                } catch (Exception e) {
                 }
             });
-            totalFutureList.add(future);
         }
-
-        ThreadPool.aWait();
     }
+
     @Override
     public void parseStockDailyDataByStockCode(String stockCode) {
         File dataPath = new File(DATA_PATH);
@@ -125,15 +125,13 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
             return;
         }
 
-        List<String> content = FileUtil.readFile(stockFile, 1);
+        List<String> content = FileUtil.readFile(stockFile, EnumCharset.GB2312.getCode(), 1);
         for (String line : content) {
-            System.out.println(line);
-            try{
+            try {
                 addOrderInfo(line);
                 crawlerLogDao.insertCrawlerLog(stockCode, null, line, EnumCrawlerEvent.STOCK_HISTORY_PARSE, EnumCrawerLogStatus.SUCCESS, null);
-
-            }catch (Exception e){
-                e.printStackTrace();
+            } catch (Exception e) {
+//                e.printStackTrace();
                 crawlerLogDao.insertCrawlerLog(stockCode, null, line, EnumCrawlerEvent.STOCK_HISTORY_PARSE, EnumCrawerLogStatus.EXCEPTION, e.getMessage());
             }
         }
@@ -144,7 +142,6 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
 
         File dataPath = new File(DATA_PATH);
         File stockFile = new File(dataPath, stockCode);
-        System.out.println(stockFile);
 
         if (LocalCache.hitCache(EnumLocalCache.STOCK_HISTORY_FILE_CACHE, stockCode)) {
             System.out.println(stockCode + " has been dealed, skip this stock");

@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,7 +47,12 @@ public class HttpUtils {
 
         File dataPath = new File("D:/CDT/workspace/mygit/test/data");
         File stockFile = new File(dataPath, "0601398");
-        getFileFromUrl(url,stockFile);
+//        getFileFromUrl(url,stockFile);
+
+        List<String> content = FileUtil.readFile(stockFile, 0);
+        for (String s : content) {
+            System.out.println(content);
+        }
     }
 
     public static void getFileFromUrl(String url, File file) {
