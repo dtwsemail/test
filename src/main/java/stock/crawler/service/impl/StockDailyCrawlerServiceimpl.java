@@ -156,7 +156,6 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
 
 
         String url = "http://quotes.money.163.com/service/chddata.html?code=0" + stockCode + "";
-        HttpUtils.getFileFromUrl(url, stockFile);
 
         String resp = null;
         try {
