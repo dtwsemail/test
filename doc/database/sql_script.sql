@@ -143,22 +143,26 @@ CREATE TABLE `stock_analyse` (
   COMMENT '分析开始节点',
   `begin_trade_date`  DATE           DEFAULT NULL
   COMMENT '开始日期',
-  `end_price`         DECIMAL(18, 2) DEFAULT NULL
+  `end_price`    DECIMAL(18, 2) DEFAULT NULL
   COMMENT '收盘价',
-  `top_price`         DECIMAL(18, 2) DEFAULT NULL
+  `top_price`    DECIMAL(18, 2) DEFAULT NULL
   COMMENT '最高价',
-  `bottom_price`      DECIMAL(18, 2) DEFAULT NULL
+  `bottom_price` DECIMAL(18, 2) DEFAULT NULL
   COMMENT '最低价',
-  `begin_price`       DECIMAL(18, 2) DEFAULT NULL
+  `begin_price`  DECIMAL(18, 2) DEFAULT NULL
   COMMENT '涨跌额',
-  `shake_rate`        DECIMAL(18, 4) DEFAULT NULL
+  `shake_rate`   DECIMAL(18, 4) DEFAULT NULL
   COMMENT '涨跌幅',
-  `turn_rate`         DECIMAL(18, 4) DEFAULT NULL
+  `turn_rate`    DECIMAL(18, 4) DEFAULT NULL
   COMMENT '转手率',
-  `trade_quote`       DECIMAL(24, 4) DEFAULT NULL
+  `trade_quote`  DECIMAL(24, 4) DEFAULT NULL
   COMMENT '成交量',
-  `trade_amount`      DECIMAL(24, 4) DEFAULT NULL
+  `trade_amount` DECIMAL(24, 4) DEFAULT NULL
   COMMENT '成交金额',
+  `is_broken`    BOOL           DEFAULT FALSE
+  COMMENT '是否休市',
+  `is_XD`        BOOL           DEFAULT FALSE
+  COMMENT '是否除息',
   PRIMARY KEY (`analyse_id`)
 )
   ENGINE = InnoDB
