@@ -1,4 +1,4 @@
-package stock.history.dal.model;
+package stock.dal.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

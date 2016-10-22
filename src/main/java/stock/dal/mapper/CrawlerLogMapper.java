@@ -1,8 +1,8 @@
-package stock.history.dal.mapper;
+package stock.dal.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import stock.history.dal.model.CrawlerLog;
-import stock.history.dal.model.CrawlerLogExample;
+import stock.dal.model.CrawlerLog;
+import stock.dal.model.CrawlerLogExample;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package stock.history.dal.dao;
+package stock.dal.dao;
 
 import stock.common.constant.EnumCrawerLogStatus;
 import stock.common.constant.EnumCrawlerEvent;
-import stock.history.dal.model.CrawlerLog;
+import stock.dal.model.CrawlerLog;
 
 /**
  * Created by lemon on 9/5/16.

@@ -19,4 +19,8 @@ public class StockDailyInfoCrawlerController {
 
         stockDailyCrawlerService.crawStockDailyInfo();
     }
+
+    public void parseStockDailyData( ){
+        stockDailyCrawlerService.parseStockDailyData();
+    }
 }

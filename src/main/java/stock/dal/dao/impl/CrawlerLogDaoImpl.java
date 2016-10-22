@@ -1,13 +1,13 @@
-package stock.history.dal.dao.impl;
+package stock.dal.dao.impl;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import stock.common.constant.EnumCrawerLogStatus;
 import stock.common.constant.EnumCrawlerEvent;
-import stock.history.dal.dao.CrawlerLogDao;
-import stock.history.dal.mapper.CrawlerLogMapper;
-import stock.history.dal.model.CrawlerLog;
+import stock.dal.dao.CrawlerLogDao;
+import stock.dal.mapper.CrawlerLogMapper;
+import stock.dal.model.CrawlerLog;
 import stock.utils.DateUtil;
 import stock.utils.SerialUtil;
 

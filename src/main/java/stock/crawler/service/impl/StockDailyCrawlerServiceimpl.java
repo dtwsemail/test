@@ -13,11 +13,11 @@ import stock.common.constant.EnumLocalCache;
 import stock.common.exception.DataParseException;
 import stock.common.threads.ThreadPool;
 import stock.crawler.service.StockDailyCrawlerService;
-import stock.history.dal.dao.CrawlerLogDao;
-import stock.history.dal.dao.OrderInfoDao;
-import stock.history.dal.dao.StockInfoDao;
-import stock.history.dal.model.OrderInfo;
-import stock.history.dal.model.StockInfo;
+import stock.dal.dao.CrawlerLogDao;
+import stock.dal.dao.OrderInfoDao;
+import stock.dal.dao.StockInfoDao;
+import stock.dal.model.OrderInfo;
+import stock.dal.model.StockInfo;
 import stock.utils.*;
 
 import java.io.File;
@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lemon on 10/5/16.
@@ -43,13 +44,6 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
     @Value("${data_path}")
     private String DATA_PATH;
 
-    public static void main(String[] args) {
-        String s = " 2016-09-21,'000001,��ָ֤��,   3025.8736,3032,-10.3147, -0.344,,104625697,1.16437377488e+11,,,None";
-        //         2016-09-30,'600228,昌九生化,14.86,    15.04,14.12,14.12,14.48,0.38,2.6243,8.6794,20945170,309060007.0,3586015200.0,3586015200.0,None
-
-        String[] elements = s.split(",");
-        System.out.println(elements.length);
-    }
 
     @Override
     public void crawStockDailyInfo() {
@@ -59,7 +53,7 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
             ListenableFuture future = ThreadPool.submit(new Callable<String>() {
                 @Override
                 public String call() throws Exception {
-                    crawStockDailyInfoByStockCode(info.getStockId());
+                    crawlerStockDailyFileByStockCode(info.getStockId());
                     return null;
                 }
             });
@@ -70,34 +64,35 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
     }
 
     private void addOrderInfo(String line) {
-        if (StringUtils.isNotBlank(line)) {
-            String[] elements = line.split(",");
 
-            if (elements.length < 16) {
-                throw new DataParseException(line);
+            if (StringUtils.isNotBlank(line)) {
+                String[] elements = line.split(",");
+
+                if (elements.length < 16) {
+                    throw new DataParseException(line);
+                }
+
+    //        日期0,股票代码1,名称2,收盘价3,最高价4,最低价5,开盘价6,前收盘7,涨跌额8,涨跌幅9,换手率10,成交量11,成交金额12,总市值13,流通市值14,成交笔数15
+    //        2016-09-30,'600228,昌九生化,14.86,15.04,14.12,14.12,14.48,0.38,2.6243,8.6794,20945170,309060007.0,3586015200.0,3586015200.0,None
+                OrderInfo info = new OrderInfo();
+                info.setOrderId(SerialUtil.generateSerialNo());
+                info.setTradeDate(DateUtil.parseDate(elements[0]));
+                info.setStockId(elements[1]);
+                info.setEndPrice(NumberUtil.parseBigDecimal(elements[3]));
+                info.setTopPrice(NumberUtil.parseBigDecimal(elements[4]));
+                info.setBottomPrice(NumberUtil.parseBigDecimal(elements[5]));
+                info.setBeginPrice(NumberUtil.parseBigDecimal(elements[6]));
+                info.setPreviousPrice(NumberUtil.parseBigDecimal(elements[7]));
+                info.setShakePrice(NumberUtil.parseBigDecimal(elements[8]));
+                info.setShakeRate(NumberUtil.parseBigDecimal(elements[9]));
+                info.setTurnRate(NumberUtil.parseBigDecimal(elements[10]));
+                info.setTradeQuote(NumberUtil.parseBigDecimal(elements[11]));
+                info.setTradeAmount(NumberUtil.parseBigDecimal(elements[12]));
+                info.setTotalAmount(NumberUtil.parseBigDecimal(elements[13]));
+                info.setUnfrozenAmount(NumberUtil.parseBigDecimal(elements[14]));
+                info.setTradeNumber(null);
+                orderInfoDao.insertOrderInfo(info);
             }
-
-//        日期0,股票代码1,名称2,收盘价3,最高价4,最低价5,开盘价6,前收盘7,涨跌额8,涨跌幅9,换手率10,成交量11,成交金额12,总市值13,流通市值14,成交笔数15
-//        2016-09-30,'600228,昌九生化,14.86,15.04,14.12,14.12,14.48,0.38,2.6243,8.6794,20945170,309060007.0,3586015200.0,3586015200.0,None
-            OrderInfo info = new OrderInfo();
-            info.setOrderId(SerialUtil.generateSerialNo());
-            info.setTradeDate(DateUtil.parseDate(elements[0]));
-            info.setStockId(elements[1]);
-            info.setEndPrice(NumberUtil.parseBigDecimal(elements[3]));
-            info.setTopPrice(NumberUtil.parseBigDecimal(elements[4]));
-            info.setBottomPrice(NumberUtil.parseBigDecimal(elements[5]));
-            info.setBeginPrice(NumberUtil.parseBigDecimal(elements[6]));
-            info.setPreviousPrice(NumberUtil.parseBigDecimal(elements[7]));
-            info.setShakePrice(NumberUtil.parseBigDecimal(elements[8]));
-            info.setShakeRate(NumberUtil.parseBigDecimal(elements[9]));
-            info.setTurnRate(NumberUtil.parseBigDecimal(elements[10]));
-            info.setTradeQuote(NumberUtil.parseBigDecimal(elements[11]));
-            info.setTradeAmount(NumberUtil.parseBigDecimal(elements[12]));
-            info.setTotalAmount(NumberUtil.parseBigDecimal(elements[13]));
-            info.setUnfrozenAmount(NumberUtil.parseBigDecimal(elements[14]));
-            info.setTradeNumber(null);
-            orderInfoDao.insertOrderInfo(info);
-        }
     }
 
     @Override
@@ -106,12 +101,23 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
         ExecutorService service = Executors.newFixedThreadPool(100);
 
         for (StockInfo info : list) {
-            service.execute(() -> {
-                try {
-                    parseStockDailyDataByStockCode(info.getStockId());
-                } catch (Exception e) {
+            service.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+//                    System.out.println("hello body");
+                        parseStockDailyDataByStockCode(info.getStockId());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
+        }
+
+        try {
+            service.awaitTermination(10, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -131,14 +137,14 @@ public class StockDailyCrawlerServiceimpl implements StockDailyCrawlerService {
                 addOrderInfo(line);
                 crawlerLogDao.insertCrawlerLog(stockCode, null, line, EnumCrawlerEvent.STOCK_HISTORY_PARSE, EnumCrawerLogStatus.SUCCESS, null);
             } catch (Exception e) {
-//                e.printStackTrace();
+                e.printStackTrace();
                 crawlerLogDao.insertCrawlerLog(stockCode, null, line, EnumCrawlerEvent.STOCK_HISTORY_PARSE, EnumCrawerLogStatus.EXCEPTION, e.getMessage());
             }
         }
     }
 
     @Override
-    public void crawStockDailyInfoByStockCode(String stockCode) {
+    public void crawlerStockDailyFileByStockCode(String stockCode) {
 
         File dataPath = new File(DATA_PATH);
         File stockFile = new File(dataPath, stockCode);

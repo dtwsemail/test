@@ -14,5 +14,5 @@ public interface StockDailyCrawlerService {
 
     void parseStockDailyDataByStockCode(String stockCode);
 
-    void crawStockDailyInfoByStockCode(String stockCode);
+    void crawlerStockDailyFileByStockCode(String stockCode);
 }

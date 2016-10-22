@@ -1,4 +1,4 @@
-package stock.history.dal.model;
+package stock.dal.model;
 
 public class StockInfo {
     private String stockId;

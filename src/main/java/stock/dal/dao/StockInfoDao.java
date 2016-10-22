@@ -1,6 +1,6 @@
-package stock.history.dal.dao;
+package stock.dal.dao;
 
-import stock.history.dal.model.StockInfo;
+import stock.dal.model.StockInfo;
 
 import java.util.List;
 

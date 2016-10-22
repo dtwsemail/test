@@ -1,8 +1,8 @@
-package stock.history.dal.mapper;
+package stock.dal.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import stock.history.dal.model.StockInfo;
-import stock.history.dal.model.StockInfoExample;
+import stock.dal.model.StockInfo;
+import stock.dal.model.StockInfoExample;
 
 import java.util.List;
 

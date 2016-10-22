@@ -1,6 +1,6 @@
-package stock.history.dal.dao;
+package stock.dal.dao;
 
-import stock.history.dal.model.OrderInfo;
+import stock.dal.model.OrderInfo;
 
 /**
  * Created by lemon on 9/4/16.

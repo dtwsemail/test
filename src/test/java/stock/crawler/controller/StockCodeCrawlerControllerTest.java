@@ -25,7 +25,7 @@ public class StockCodeCrawlerControllerTest extends BaseTest {
 
     @Test
     public void getStockCodeData() throws Exception {
-        stockCodeCrawlerController.getStockCodeData();
+//        stockCodeCrawlerController.getStockCodeData();
     }
 
 }

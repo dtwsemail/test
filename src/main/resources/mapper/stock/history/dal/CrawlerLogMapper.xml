@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="stock.history.dal.mapper.CrawlerLogMapper" >
-  <resultMap id="BaseResultMap" type="stock.history.dal.model.CrawlerLog" >
+<mapper namespace="stock.dal.mapper.CrawlerLogMapper" >
+  <resultMap id="BaseResultMap" type="stock.dal.model.CrawlerLog" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="stock_id" property="stockId" jdbcType="VARCHAR" />
     <result column="crawler_event" property="crawlerEvent" jdbcType="VARCHAR" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List" >
     id, stock_id, crawler_event, request, response, param, create_time, status, error_msg
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="stock.history.dal.model.CrawlerLogExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="stock.dal.model.CrawlerLogExample" >
     select
     <if test="distinct" >
       distinct
@@ -97,13 +97,13 @@
     delete from crawler_log
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="stock.history.dal.model.CrawlerLogExample" >
+  <delete id="deleteByExample" parameterType="stock.dal.model.CrawlerLogExample" >
     delete from crawler_log
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="stock.history.dal.model.CrawlerLog" >
+  <insert id="insert" parameterType="stock.dal.model.CrawlerLog" >
     insert into crawler_log (id, stock_id, crawler_event, 
       request, response, param, 
       create_time, status, error_msg
@@ -113,7 +113,7 @@
       #{createTime,jdbcType=DATE}, #{status,jdbcType=VARCHAR}, #{errorMsg,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="stock.history.dal.model.CrawlerLog" >
+  <insert id="insertSelective" parameterType="stock.dal.model.CrawlerLog" >
     insert into crawler_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -174,7 +174,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="stock.history.dal.model.CrawlerLogExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="stock.dal.model.CrawlerLogExample" resultType="java.lang.Integer" >
     select count(*) from crawler_log
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -230,7 +230,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="stock.history.dal.model.CrawlerLog" >
+  <update id="updateByPrimaryKeySelective" parameterType="stock.dal.model.CrawlerLog" >
     update crawler_log
     <set >
       <if test="stockId != null" >
@@ -260,7 +260,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="stock.history.dal.model.CrawlerLog" >
+  <update id="updateByPrimaryKey" parameterType="stock.dal.model.CrawlerLog" >
     update crawler_log
     set stock_id = #{stockId,jdbcType=VARCHAR},
       crawler_event = #{crawlerEvent,jdbcType=VARCHAR},

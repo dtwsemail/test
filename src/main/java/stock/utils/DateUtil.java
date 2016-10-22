@@ -2,7 +2,6 @@ package stock.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +10,7 @@ import java.util.Date;
  */
 public class DateUtil {
 
-    private final static SimpleDateFormat LINE_SPLIT_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+//    private final static SimpleDateFormat LINE_SPLIT_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     public static Date getCurrentDate() {
         return new Date();
@@ -25,8 +24,10 @@ public class DateUtil {
 
 
         try {
+            SimpleDateFormat LINE_SPLIT_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
             return LINE_SPLIT_FORMAT.parse(date);
-        } catch (ParseException e) {
+        } catch (Exception e) {
+            System.out.println("error:" + date);
             e.printStackTrace();
         }
         return null;

@@ -1,14 +1,11 @@
 package stock.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import stock.common.constant.EnumCharset;
 import stock.common.exception.HttpException;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,24 +34,24 @@ public class HttpUtils {
         return StringUtils.EMPTY;
     }
 
-    public static void main(String[] args) {
-        Map<String, String> params = new HashMap<String, String>();
-
-        params.put("test", "123");
-
-        System.out.println(getUrlParamStr(params));
-
-        String url = "http://quotes.money.163.com/service/chddata.html?code=0601398&start=20061027&end=20160828&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER;TCAP;MCAP";
-
-        File dataPath = new File("D:/CDT/workspace/mygit/test/data");
-        File stockFile = new File(dataPath, "0601398");
-//        getFileFromUrl(url,stockFile);
-
-        List<String> content = FileUtil.readFile(stockFile, EnumCharset.GB2312.getCode(), 0);
-        for (String s : content) {
-            System.out.println(content);
-        }
-    }
+//    public static void main(String[] args) {
+//        Map<String, String> params = new HashMap<String, String>();
+//
+//        params.put("test", "123");
+//
+//        System.out.println(getUrlParamStr(params));
+//
+//        String url = "http://quotes.money.163.com/service/chddata.html?code=0601398&start=20061027&end=20160828&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER;TCAP;MCAP";
+//
+//        File dataPath = new File("D:/CDT/workspace/mygit/test/data");
+//        File stockFile = new File(dataPath, "0601398");
+////        getFileFromUrl(url,stockFile);
+//
+//        List<String> content = FileUtil.readFile(stockFile, EnumCharset.GB2312.getCode(),0);
+//        for (String s : content) {
+//            System.out.println(content);
+//        }
+//    }
 
     public static void getFileFromUrl(String url, File file) {
         FileOutputStream fos = null;

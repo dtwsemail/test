@@ -1,10 +1,10 @@
-package stock.history.dal.dao.impl;
+package stock.dal.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import stock.history.dal.dao.OrderInfoDao;
-import stock.history.dal.mapper.OrderInfoMapper;
-import stock.history.dal.model.OrderInfo;
+import stock.dal.dao.OrderInfoDao;
+import stock.dal.mapper.OrderInfoMapper;
+import stock.dal.model.OrderInfo;
 
 /**
  * Created by lemon on 9/4/16.

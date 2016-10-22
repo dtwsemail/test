@@ -1,4 +1,4 @@
-package stock.history.dal.model;
+package stock.dal.model;
 
 import java.util.Date;
 

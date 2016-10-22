@@ -13,19 +13,21 @@ public class StockDailyCrawlerServiceimplTest extends BaseTest {
     @Autowired
     private StockDailyCrawlerService stockDailyCrawlerService;
 
+//    @Test
+//    public void crawStockDailyInfoByStockCode() throws Exception {
+//        stockDailyCrawlerService.crawlerStockDailyFileByStockCode("000001");
+//    }
+
+//    @Test
+//    public void crawStockDailyInfo() throws Exception {
+//        stockDailyCrawlerService.crawStockDailyInfo( );
+//    }
+
+
     @Test
-    public void crawStockDailyInfoByStockCode() throws Exception {
-        stockDailyCrawlerService.crawStockDailyInfoByStockCode("000001");
-    }
-
-//    @Test
-    public void crawStockDailyInfo() throws Exception {
-        stockDailyCrawlerService.crawStockDailyInfo( );
-    }
-
-
-//    @Test
     public void parseStockDailyInfo() throws Exception {
-        stockDailyCrawlerService.parseStockDailyData();
+//        stockDailyCrawlerService.parseStockDailyData();
+
+        stockDailyCrawlerService.parseStockDailyDataByStockCode("000001");
     }
 }

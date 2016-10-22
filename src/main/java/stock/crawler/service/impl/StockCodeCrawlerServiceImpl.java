@@ -9,9 +9,9 @@ import stock.common.constant.EnumCrawlerEvent;
 import stock.common.constant.EnumLocalCache;
 import stock.common.constant.EnumStockLocation;
 import stock.crawler.service.StockCodeCrawlerService;
-import stock.history.dal.dao.CrawlerLogDao;
-import stock.history.dal.dao.StockInfoDao;
-import stock.history.dal.model.StockInfo;
+import stock.dal.dao.CrawlerLogDao;
+import stock.dal.dao.StockInfoDao;
+import stock.dal.model.StockInfo;
 import stock.utils.HttpUtils;
 
 /**
