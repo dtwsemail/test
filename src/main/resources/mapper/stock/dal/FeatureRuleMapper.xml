@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="stock.dal.mapper.FeatureRuleMapper">
+    <resultMap id="BaseResultMap" type="stock.dal.model.FeatureRule">
+        <id column="rule_id" property="ruleId" jdbcType="VARCHAR"/>
+        <result column="rule_type" property="ruleType" jdbcType="VARCHAR"/>
+        <result column="bottom_value" property="bottomValue" jdbcType="DECIMAL"/>
+        <result column="top_value" property="topValue" jdbcType="DECIMAL"/>
+        <result column="desc" property="desc" jdbcType="VARCHAR"/>
+        <result column="stock_code" property="stockCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        rule_id, rule_type, bottom_value, top_value, desc, stock_code
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="stock.dal.model.FeatureRuleExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from feature_rule
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from feature_rule
+        where rule_id = #{ruleId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from feature_rule
+        where rule_id = #{ruleId,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="stock.dal.model.FeatureRuleExample">
+        delete from feature_rule
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="stock.dal.model.FeatureRule">
+        insert into feature_rule (rule_id, rule_type, bottom_value,
+        top_value, desc, stock_code
+        )
+        values (#{ruleId,jdbcType=VARCHAR}, #{ruleType,jdbcType=VARCHAR}, #{bottomValue,jdbcType=DECIMAL},
+        #{topValue,jdbcType=DECIMAL}, #{desc,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="stock.dal.model.FeatureRule">
+        insert into feature_rule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ruleId != null">
+                rule_id,
+            </if>
+            <if test="ruleType != null">
+                rule_type,
+            </if>
+            <if test="bottomValue != null">
+                bottom_value,
+            </if>
+            <if test="topValue != null">
+                top_value,
+            </if>
+            <if test="desc != null">
+                desc,
+            </if>
+            <if test="stockCode != null">
+                stock_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ruleId != null">
+                #{ruleId,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleType != null">
+                #{ruleType,jdbcType=VARCHAR},
+            </if>
+            <if test="bottomValue != null">
+                #{bottomValue,jdbcType=DECIMAL},
+            </if>
+            <if test="topValue != null">
+                #{topValue,jdbcType=DECIMAL},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="stockCode != null">
+                #{stockCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="stock.dal.model.FeatureRuleExample" resultType="java.lang.Integer">
+        select count(*) from feature_rule
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update feature_rule
+        <set>
+            <if test="record.ruleId != null">
+                rule_id = #{record.ruleId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ruleType != null">
+                rule_type = #{record.ruleType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bottomValue != null">
+                bottom_value = #{record.bottomValue,jdbcType=DECIMAL},
+            </if>
+            <if test="record.topValue != null">
+                top_value = #{record.topValue,jdbcType=DECIMAL},
+            </if>
+            <if test="record.desc != null">
+                desc = #{record.desc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.stockCode != null">
+                stock_code = #{record.stockCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update feature_rule
+        set rule_id = #{record.ruleId,jdbcType=VARCHAR},
+        rule_type = #{record.ruleType,jdbcType=VARCHAR},
+        bottom_value = #{record.bottomValue,jdbcType=DECIMAL},
+        top_value = #{record.topValue,jdbcType=DECIMAL},
+        desc = #{record.desc,jdbcType=VARCHAR},
+        stock_code = #{record.stockCode,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="stock.dal.model.FeatureRule">
+        update feature_rule
+        <set>
+            <if test="ruleType != null">
+                rule_type = #{ruleType,jdbcType=VARCHAR},
+            </if>
+            <if test="bottomValue != null">
+                bottom_value = #{bottomValue,jdbcType=DECIMAL},
+            </if>
+            <if test="topValue != null">
+                top_value = #{topValue,jdbcType=DECIMAL},
+            </if>
+            <if test="desc != null">
+                desc = #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="stockCode != null">
+                stock_code = #{stockCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where rule_id = #{ruleId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="stock.dal.model.FeatureRule">
+        update feature_rule
+        set rule_type = #{ruleType,jdbcType=VARCHAR},
+        bottom_value = #{bottomValue,jdbcType=DECIMAL},
+        top_value = #{topValue,jdbcType=DECIMAL},
+        desc = #{desc,jdbcType=VARCHAR},
+        stock_code = #{stockCode,jdbcType=VARCHAR}
+        where rule_id = #{ruleId,jdbcType=VARCHAR}
+    </update>
+</mapper>

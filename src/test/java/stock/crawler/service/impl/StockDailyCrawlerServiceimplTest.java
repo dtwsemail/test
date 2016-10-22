@@ -2,8 +2,8 @@ package stock.crawler.service.impl;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import stock.base.BaseTest;
 import stock.crawler.service.StockDailyCrawlerService;
-import stock.history.service.impl.BaseTest;
 
 /**
  * Created by lemon on 10/5/16.

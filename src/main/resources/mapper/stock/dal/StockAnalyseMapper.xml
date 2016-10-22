@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="stock.dal.mapper.StockAnalyseMapper">
+    <resultMap id="BaseResultMap" type="stock.dal.model.StockAnalyse">
+        <id column="analyse_id" property="analyseId" jdbcType="VARCHAR"/>
+        <result column="stock_code" property="stockCode" jdbcType="VARCHAR"/>
+        <result column="sum_shake_rate" property="sumShakeRate" jdbcType="DECIMAL"/>
+        <result column="shake_density" property="shakeDensity" jdbcType="DECIMAL"/>
+        <result column="execp_shake_rate" property="execpShakeRate" jdbcType="DECIMAL"/>
+        <result column="feature_id" property="featureId" jdbcType="VARCHAR"/>
+        <result column="analyse_days" property="analyseDays" jdbcType="INTEGER"/>
+        <result column="base_analyse_id" property="baseAnalyseId" jdbcType="VARCHAR"/>
+        <result column="sample_num" property="sampleNum" jdbcType="INTEGER"/>
+        <result column="analyse_num" property="analyseNum" jdbcType="INTEGER"/>
+        <result column="feature_belong_id" property="featureBelongId" jdbcType="VARCHAR"/>
+        <result column="begin_order_id" property="beginOrderId" jdbcType="VARCHAR"/>
+        <result column="begin_trade_date" property="beginTradeDate" jdbcType="DATE"/>
+        <result column="end_price" property="endPrice" jdbcType="DECIMAL"/>
+        <result column="top_price" property="topPrice" jdbcType="DECIMAL"/>
+        <result column="bottom_price" property="bottomPrice" jdbcType="DECIMAL"/>
+        <result column="begin_price" property="beginPrice" jdbcType="DECIMAL"/>
+        <result column="shake_rate" property="shakeRate" jdbcType="DECIMAL"/>
+        <result column="turn_rate" property="turnRate" jdbcType="DECIMAL"/>
+        <result column="trade_quote" property="tradeQuote" jdbcType="DECIMAL"/>
+        <result column="trade_amount" property="tradeAmount" jdbcType="DECIMAL"/>
+        <result column="is_broken" property="isBroken" jdbcType="BIT"/>
+        <result column="is_XD" property="isXd" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        analyse_id, stock_code, sum_shake_rate, shake_density, execp_shake_rate, feature_id,
+        analyse_days, base_analyse_id, sample_num, analyse_num, feature_belong_id, begin_order_id,
+        begin_trade_date, end_price, top_price, bottom_price, begin_price, shake_rate, turn_rate,
+        trade_quote, trade_amount, is_broken, is_XD
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="stock.dal.model.StockAnalyseExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from stock_analyse
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_analyse
+        where analyse_id = #{analyseId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from stock_analyse
+        where analyse_id = #{analyseId,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="stock.dal.model.StockAnalyseExample">
+        delete from stock_analyse
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="stock.dal.model.StockAnalyse">
+        insert into stock_analyse (analyse_id, stock_code, sum_shake_rate,
+        shake_density, execp_shake_rate, feature_id,
+        analyse_days, base_analyse_id, sample_num,
+        analyse_num, feature_belong_id, begin_order_id,
+        begin_trade_date, end_price, top_price,
+        bottom_price, begin_price, shake_rate,
+        turn_rate, trade_quote, trade_amount,
+        is_broken, is_XD)
+        values (#{analyseId,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{sumShakeRate,jdbcType=DECIMAL},
+        #{shakeDensity,jdbcType=DECIMAL}, #{execpShakeRate,jdbcType=DECIMAL}, #{featureId,jdbcType=VARCHAR},
+        #{analyseDays,jdbcType=INTEGER}, #{baseAnalyseId,jdbcType=VARCHAR}, #{sampleNum,jdbcType=INTEGER},
+        #{analyseNum,jdbcType=INTEGER}, #{featureBelongId,jdbcType=VARCHAR}, #{beginOrderId,jdbcType=VARCHAR},
+        #{beginTradeDate,jdbcType=DATE}, #{endPrice,jdbcType=DECIMAL}, #{topPrice,jdbcType=DECIMAL},
+        #{bottomPrice,jdbcType=DECIMAL}, #{beginPrice,jdbcType=DECIMAL}, #{shakeRate,jdbcType=DECIMAL},
+        #{turnRate,jdbcType=DECIMAL}, #{tradeQuote,jdbcType=DECIMAL}, #{tradeAmount,jdbcType=DECIMAL},
+        #{isBroken,jdbcType=BIT}, #{isXd,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="stock.dal.model.StockAnalyse">
+        insert into stock_analyse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="analyseId != null">
+                analyse_id,
+            </if>
+            <if test="stockCode != null">
+                stock_code,
+            </if>
+            <if test="sumShakeRate != null">
+                sum_shake_rate,
+            </if>
+            <if test="shakeDensity != null">
+                shake_density,
+            </if>
+            <if test="execpShakeRate != null">
+                execp_shake_rate,
+            </if>
+            <if test="featureId != null">
+                feature_id,
+            </if>
+            <if test="analyseDays != null">
+                analyse_days,
+            </if>
+            <if test="baseAnalyseId != null">
+                base_analyse_id,
+            </if>
+            <if test="sampleNum != null">
+                sample_num,
+            </if>
+            <if test="analyseNum != null">
+                analyse_num,
+            </if>
+            <if test="featureBelongId != null">
+                feature_belong_id,
+            </if>
+            <if test="beginOrderId != null">
+                begin_order_id,
+            </if>
+            <if test="beginTradeDate != null">
+                begin_trade_date,
+            </if>
+            <if test="endPrice != null">
+                end_price,
+            </if>
+            <if test="topPrice != null">
+                top_price,
+            </if>
+            <if test="bottomPrice != null">
+                bottom_price,
+            </if>
+            <if test="beginPrice != null">
+                begin_price,
+            </if>
+            <if test="shakeRate != null">
+                shake_rate,
+            </if>
+            <if test="turnRate != null">
+                turn_rate,
+            </if>
+            <if test="tradeQuote != null">
+                trade_quote,
+            </if>
+            <if test="tradeAmount != null">
+                trade_amount,
+            </if>
+            <if test="isBroken != null">
+                is_broken,
+            </if>
+            <if test="isXd != null">
+                is_XD,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="analyseId != null">
+                #{analyseId,jdbcType=VARCHAR},
+            </if>
+            <if test="stockCode != null">
+                #{stockCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sumShakeRate != null">
+                #{sumShakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="shakeDensity != null">
+                #{shakeDensity,jdbcType=DECIMAL},
+            </if>
+            <if test="execpShakeRate != null">
+                #{execpShakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="featureId != null">
+                #{featureId,jdbcType=VARCHAR},
+            </if>
+            <if test="analyseDays != null">
+                #{analyseDays,jdbcType=INTEGER},
+            </if>
+            <if test="baseAnalyseId != null">
+                #{baseAnalyseId,jdbcType=VARCHAR},
+            </if>
+            <if test="sampleNum != null">
+                #{sampleNum,jdbcType=INTEGER},
+            </if>
+            <if test="analyseNum != null">
+                #{analyseNum,jdbcType=INTEGER},
+            </if>
+            <if test="featureBelongId != null">
+                #{featureBelongId,jdbcType=VARCHAR},
+            </if>
+            <if test="beginOrderId != null">
+                #{beginOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="beginTradeDate != null">
+                #{beginTradeDate,jdbcType=DATE},
+            </if>
+            <if test="endPrice != null">
+                #{endPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="topPrice != null">
+                #{topPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="bottomPrice != null">
+                #{bottomPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="beginPrice != null">
+                #{beginPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="shakeRate != null">
+                #{shakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="turnRate != null">
+                #{turnRate,jdbcType=DECIMAL},
+            </if>
+            <if test="tradeQuote != null">
+                #{tradeQuote,jdbcType=DECIMAL},
+            </if>
+            <if test="tradeAmount != null">
+                #{tradeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="isBroken != null">
+                #{isBroken,jdbcType=BIT},
+            </if>
+            <if test="isXd != null">
+                #{isXd,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="stock.dal.model.StockAnalyseExample" resultType="java.lang.Integer">
+        select count(*) from stock_analyse
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update stock_analyse
+        <set>
+            <if test="record.analyseId != null">
+                analyse_id = #{record.analyseId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.stockCode != null">
+                stock_code = #{record.stockCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sumShakeRate != null">
+                sum_shake_rate = #{record.sumShakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="record.shakeDensity != null">
+                shake_density = #{record.shakeDensity,jdbcType=DECIMAL},
+            </if>
+            <if test="record.execpShakeRate != null">
+                execp_shake_rate = #{record.execpShakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="record.featureId != null">
+                feature_id = #{record.featureId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.analyseDays != null">
+                analyse_days = #{record.analyseDays,jdbcType=INTEGER},
+            </if>
+            <if test="record.baseAnalyseId != null">
+                base_analyse_id = #{record.baseAnalyseId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sampleNum != null">
+                sample_num = #{record.sampleNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.analyseNum != null">
+                analyse_num = #{record.analyseNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.featureBelongId != null">
+                feature_belong_id = #{record.featureBelongId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.beginOrderId != null">
+                begin_order_id = #{record.beginOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.beginTradeDate != null">
+                begin_trade_date = #{record.beginTradeDate,jdbcType=DATE},
+            </if>
+            <if test="record.endPrice != null">
+                end_price = #{record.endPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.topPrice != null">
+                top_price = #{record.topPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.bottomPrice != null">
+                bottom_price = #{record.bottomPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.beginPrice != null">
+                begin_price = #{record.beginPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.shakeRate != null">
+                shake_rate = #{record.shakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="record.turnRate != null">
+                turn_rate = #{record.turnRate,jdbcType=DECIMAL},
+            </if>
+            <if test="record.tradeQuote != null">
+                trade_quote = #{record.tradeQuote,jdbcType=DECIMAL},
+            </if>
+            <if test="record.tradeAmount != null">
+                trade_amount = #{record.tradeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.isBroken != null">
+                is_broken = #{record.isBroken,jdbcType=BIT},
+            </if>
+            <if test="record.isXd != null">
+                is_XD = #{record.isXd,jdbcType=BIT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update stock_analyse
+        set analyse_id = #{record.analyseId,jdbcType=VARCHAR},
+        stock_code = #{record.stockCode,jdbcType=VARCHAR},
+        sum_shake_rate = #{record.sumShakeRate,jdbcType=DECIMAL},
+        shake_density = #{record.shakeDensity,jdbcType=DECIMAL},
+        execp_shake_rate = #{record.execpShakeRate,jdbcType=DECIMAL},
+        feature_id = #{record.featureId,jdbcType=VARCHAR},
+        analyse_days = #{record.analyseDays,jdbcType=INTEGER},
+        base_analyse_id = #{record.baseAnalyseId,jdbcType=VARCHAR},
+        sample_num = #{record.sampleNum,jdbcType=INTEGER},
+        analyse_num = #{record.analyseNum,jdbcType=INTEGER},
+        feature_belong_id = #{record.featureBelongId,jdbcType=VARCHAR},
+        begin_order_id = #{record.beginOrderId,jdbcType=VARCHAR},
+        begin_trade_date = #{record.beginTradeDate,jdbcType=DATE},
+        end_price = #{record.endPrice,jdbcType=DECIMAL},
+        top_price = #{record.topPrice,jdbcType=DECIMAL},
+        bottom_price = #{record.bottomPrice,jdbcType=DECIMAL},
+        begin_price = #{record.beginPrice,jdbcType=DECIMAL},
+        shake_rate = #{record.shakeRate,jdbcType=DECIMAL},
+        turn_rate = #{record.turnRate,jdbcType=DECIMAL},
+        trade_quote = #{record.tradeQuote,jdbcType=DECIMAL},
+        trade_amount = #{record.tradeAmount,jdbcType=DECIMAL},
+        is_broken = #{record.isBroken,jdbcType=BIT},
+        is_XD = #{record.isXd,jdbcType=BIT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="stock.dal.model.StockAnalyse">
+        update stock_analyse
+        <set>
+            <if test="stockCode != null">
+                stock_code = #{stockCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sumShakeRate != null">
+                sum_shake_rate = #{sumShakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="shakeDensity != null">
+                shake_density = #{shakeDensity,jdbcType=DECIMAL},
+            </if>
+            <if test="execpShakeRate != null">
+                execp_shake_rate = #{execpShakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="featureId != null">
+                feature_id = #{featureId,jdbcType=VARCHAR},
+            </if>
+            <if test="analyseDays != null">
+                analyse_days = #{analyseDays,jdbcType=INTEGER},
+            </if>
+            <if test="baseAnalyseId != null">
+                base_analyse_id = #{baseAnalyseId,jdbcType=VARCHAR},
+            </if>
+            <if test="sampleNum != null">
+                sample_num = #{sampleNum,jdbcType=INTEGER},
+            </if>
+            <if test="analyseNum != null">
+                analyse_num = #{analyseNum,jdbcType=INTEGER},
+            </if>
+            <if test="featureBelongId != null">
+                feature_belong_id = #{featureBelongId,jdbcType=VARCHAR},
+            </if>
+            <if test="beginOrderId != null">
+                begin_order_id = #{beginOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="beginTradeDate != null">
+                begin_trade_date = #{beginTradeDate,jdbcType=DATE},
+            </if>
+            <if test="endPrice != null">
+                end_price = #{endPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="topPrice != null">
+                top_price = #{topPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="bottomPrice != null">
+                bottom_price = #{bottomPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="beginPrice != null">
+                begin_price = #{beginPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="shakeRate != null">
+                shake_rate = #{shakeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="turnRate != null">
+                turn_rate = #{turnRate,jdbcType=DECIMAL},
+            </if>
+            <if test="tradeQuote != null">
+                trade_quote = #{tradeQuote,jdbcType=DECIMAL},
+            </if>
+            <if test="tradeAmount != null">
+                trade_amount = #{tradeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="isBroken != null">
+                is_broken = #{isBroken,jdbcType=BIT},
+            </if>
+            <if test="isXd != null">
+                is_XD = #{isXd,jdbcType=BIT},
+            </if>
+        </set>
+        where analyse_id = #{analyseId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="stock.dal.model.StockAnalyse">
+        update stock_analyse
+        set stock_code = #{stockCode,jdbcType=VARCHAR},
+        sum_shake_rate = #{sumShakeRate,jdbcType=DECIMAL},
+        shake_density = #{shakeDensity,jdbcType=DECIMAL},
+        execp_shake_rate = #{execpShakeRate,jdbcType=DECIMAL},
+        feature_id = #{featureId,jdbcType=VARCHAR},
+        analyse_days = #{analyseDays,jdbcType=INTEGER},
+        base_analyse_id = #{baseAnalyseId,jdbcType=VARCHAR},
+        sample_num = #{sampleNum,jdbcType=INTEGER},
+        analyse_num = #{analyseNum,jdbcType=INTEGER},
+        feature_belong_id = #{featureBelongId,jdbcType=VARCHAR},
+        begin_order_id = #{beginOrderId,jdbcType=VARCHAR},
+        begin_trade_date = #{beginTradeDate,jdbcType=DATE},
+        end_price = #{endPrice,jdbcType=DECIMAL},
+        top_price = #{topPrice,jdbcType=DECIMAL},
+        bottom_price = #{bottomPrice,jdbcType=DECIMAL},
+        begin_price = #{beginPrice,jdbcType=DECIMAL},
+        shake_rate = #{shakeRate,jdbcType=DECIMAL},
+        turn_rate = #{turnRate,jdbcType=DECIMAL},
+        trade_quote = #{tradeQuote,jdbcType=DECIMAL},
+        trade_amount = #{tradeAmount,jdbcType=DECIMAL},
+        is_broken = #{isBroken,jdbcType=BIT},
+        is_XD = #{isXd,jdbcType=BIT}
+        where analyse_id = #{analyseId,jdbcType=VARCHAR}
+    </update>
+</mapper>

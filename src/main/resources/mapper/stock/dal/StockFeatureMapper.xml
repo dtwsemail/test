@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="stock.dal.mapper.StockFeatureMapper">
+    <resultMap id="BaseResultMap" type="stock.dal.model.StockFeature">
+        <id column="feature_id" property="featureId" jdbcType="VARCHAR"/>
+        <result column="base_feature_id" property="baseFeatureId" jdbcType="VARCHAR"/>
+        <result column="new_rule_id" property="newRuleId" jdbcType="VARCHAR"/>
+        <result column="desc" property="desc" jdbcType="VARCHAR"/>
+        <result column="is_origin" property="isOrigin" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        feature_id, base_feature_id, new_rule_id, desc, is_origin
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="stock.dal.model.StockFeatureExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from stock_feature
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_feature
+        where feature_id = #{featureId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from stock_feature
+        where feature_id = #{featureId,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="stock.dal.model.StockFeatureExample">
+        delete from stock_feature
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="stock.dal.model.StockFeature">
+        insert into stock_feature (feature_id, base_feature_id, new_rule_id,
+        desc, is_origin)
+        values (#{featureId,jdbcType=VARCHAR}, #{baseFeatureId,jdbcType=VARCHAR}, #{newRuleId,jdbcType=VARCHAR},
+        #{desc,jdbcType=VARCHAR}, #{isOrigin,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="stock.dal.model.StockFeature">
+        insert into stock_feature
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="featureId != null">
+                feature_id,
+            </if>
+            <if test="baseFeatureId != null">
+                base_feature_id,
+            </if>
+            <if test="newRuleId != null">
+                new_rule_id,
+            </if>
+            <if test="desc != null">
+                desc,
+            </if>
+            <if test="isOrigin != null">
+                is_origin,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="featureId != null">
+                #{featureId,jdbcType=VARCHAR},
+            </if>
+            <if test="baseFeatureId != null">
+                #{baseFeatureId,jdbcType=VARCHAR},
+            </if>
+            <if test="newRuleId != null">
+                #{newRuleId,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="isOrigin != null">
+                #{isOrigin,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="stock.dal.model.StockFeatureExample" resultType="java.lang.Integer">
+        select count(*) from stock_feature
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update stock_feature
+        <set>
+            <if test="record.featureId != null">
+                feature_id = #{record.featureId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.baseFeatureId != null">
+                base_feature_id = #{record.baseFeatureId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.newRuleId != null">
+                new_rule_id = #{record.newRuleId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.desc != null">
+                desc = #{record.desc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isOrigin != null">
+                is_origin = #{record.isOrigin,jdbcType=BIT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update stock_feature
+        set feature_id = #{record.featureId,jdbcType=VARCHAR},
+        base_feature_id = #{record.baseFeatureId,jdbcType=VARCHAR},
+        new_rule_id = #{record.newRuleId,jdbcType=VARCHAR},
+        desc = #{record.desc,jdbcType=VARCHAR},
+        is_origin = #{record.isOrigin,jdbcType=BIT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="stock.dal.model.StockFeature">
+        update stock_feature
+        <set>
+            <if test="baseFeatureId != null">
+                base_feature_id = #{baseFeatureId,jdbcType=VARCHAR},
+            </if>
+            <if test="newRuleId != null">
+                new_rule_id = #{newRuleId,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                desc = #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="isOrigin != null">
+                is_origin = #{isOrigin,jdbcType=BIT},
+            </if>
+        </set>
+        where feature_id = #{featureId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="stock.dal.model.StockFeature">
+        update stock_feature
+        set base_feature_id = #{baseFeatureId,jdbcType=VARCHAR},
+        new_rule_id = #{newRuleId,jdbcType=VARCHAR},
+        desc = #{desc,jdbcType=VARCHAR},
+        is_origin = #{isOrigin,jdbcType=BIT}
+        where feature_id = #{featureId,jdbcType=VARCHAR}
+    </update>
+</mapper>

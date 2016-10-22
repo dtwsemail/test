@@ -4,8 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import stock.base.BaseTest;
 import stock.crawler.service.StockCodeCrawlerService;
-import stock.history.service.impl.BaseTest;
 
 /**
  * Created by lemon on 9/5/16.

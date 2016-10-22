@@ -14,7 +14,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/million" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/stock" userId="root"
                         password="82790086">
         </jdbcConnection>
 
@@ -24,29 +24,33 @@
         </javaTypeResolver>
 
         <!-- targetProject:自动生成代码的位置 -->
-        <javaModelGenerator targetPackage="stock.history.dal.model"
+        <javaModelGenerator targetPackage="stock.dal.model"
                             targetProject="/workspace/myCode/million/test/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
 
-        <sqlMapGenerator targetPackage="mapper.stock.history.dal"
+        <sqlMapGenerator targetPackage="mapper.stock.dal"
                          targetProject="/workspace/myCode/million/test/src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
 
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="stock.history.dal.mapper"
+                             targetPackage="stock.dal.mapper"
                              targetProject="/workspace/myCode/million/test/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
-        <table tableName="order_info" domainObjectName="OrderInfo"></table>
+        <!--<table tableName="order_info" domainObjectName="OrderInfo"></table>-->
         <!--<table tableName="stock_info" domainObjectName="StockInfo"/>-->
         <!--<table tableName="crawler_log" domainObjectName="CrawlerLog"/>-->
+        <!--<table tableName="exception_log" domainObjectName="ExceptionLog"/>-->
+        <!--<table tableName="feature_rule" domainObjectName="FeatureRule"/>-->
+        <!--<table tableName="stock_analyse" domainObjectName="StockAnalyse"/>-->
+        <table tableName="stock_feature" domainObjectName="StockFeature"/>
     </context>
 
 </generatorConfiguration> 

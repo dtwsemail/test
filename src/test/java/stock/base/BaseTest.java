@@ -1,4 +1,4 @@
-package stock.history.service.impl;
+package stock.base;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

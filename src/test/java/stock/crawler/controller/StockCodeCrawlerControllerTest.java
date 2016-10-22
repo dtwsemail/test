@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import stock.history.service.impl.BaseTest;
+import stock.base.BaseTest;
 
 /**
  * Created by lemon on 9/6/16.
