@@ -89,11 +89,31 @@ CREATE TABLE `feature_rule` (
   COMMENT '最小值',
   `top_value`    DECIMAL(18, 4) DEFAULT NULL
   COMMENT '最大值',
+  `desc`         VARCHAR(32)    DEFAULT NULL
+  COMMENT '描述',
+  `stock_code`   VARCHAR(32)    DEFAULT NULL
+  COMMENT '关联股票',
   PRIMARY KEY (`rule_id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COMMENT = '规则定义';
+
+INSERT INTO feature_rule VALUES ('shake_rate_1', 'shake_rate', -100, -9.85, '跌停', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_2', 'shake_rate', -9.85, -4.3, '大跌', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_3', 'shake_rate', -4.3, -2.3, '中跌', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_4', 'shake_rate', -2.3, -0.3, '小跌', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_5', 'shake_rate', -0.3, 0.3, '持平', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_6', 'shake_rate', 0.3, 2.3, '小涨', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_7', 'shake_rate', 2.3, 4.3, '中涨', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_8', 'shake_rate', 4.3, 9.85, '大涨', NULL);
+INSERT INTO feature_rule VALUES ('shake_rate_9', 'shake_rate', 9.85, 100, '涨停', NULL);
+
+INSERT INTO feature_rule VALUES ('turn_rate_1', 'turn_rate', 10, 100, '超高', NULL);
+INSERT INTO feature_rule VALUES ('turn_rate_2', 'turn_rate', 4.5, 10, '高', NULL);
+INSERT INTO feature_rule VALUES ('turn_rate_3', 'turn_rate', 2.5, 4.5, '中等', NULL);
+INSERT INTO feature_rule VALUES ('turn_rate_4', 'turn_rate', 0.8, 2.5, '低', NULL);
+INSERT INTO feature_rule VALUES ('turn_rate_5', 'turn_rate', 0, 0.8, '极地', NULL);
 
 
 DROP TABLE IF EXISTS `stock_feature`;
