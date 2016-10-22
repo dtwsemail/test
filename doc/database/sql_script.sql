@@ -97,7 +97,7 @@ CREATE TABLE `feature_rule` (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
-  COMMENT = '规则定义';
+  COMMENT = '初始规则定义';
 
 INSERT INTO feature_rule VALUES ('shake_rate_1', 'shake_rate', -100, -9.85, '跌停', NULL);
 INSERT INTO feature_rule VALUES ('shake_rate_2', 'shake_rate', -9.85, -4.3, '大跌', NULL);
