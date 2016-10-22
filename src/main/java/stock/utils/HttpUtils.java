@@ -1,6 +1,7 @@
 package stock.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import stock.common.constant.EnumCharset;
 import stock.common.exception.HttpException;
 
 import java.io.*;
@@ -49,7 +50,7 @@ public class HttpUtils {
         File stockFile = new File(dataPath, "0601398");
 //        getFileFromUrl(url,stockFile);
 
-        List<String> content = FileUtil.readFile(stockFile, 0);
+        List<String> content = FileUtil.readFile(stockFile, EnumCharset.GB2312.getCode(), 0);
         for (String s : content) {
             System.out.println(content);
         }
